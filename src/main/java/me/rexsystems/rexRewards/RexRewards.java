@@ -13,9 +13,12 @@ import me.rexsystems.rexRewards.util.SchedulerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class RexRewards extends JavaPlugin {
+
+    private static final int BSTATS_PLUGIN_ID = 35266;
 
     private Settings settings;
     private Menus menus;
@@ -55,6 +58,7 @@ public final class RexRewards extends JavaPlugin {
         }
 
         startRefresh();
+        new Metrics(this, BSTATS_PLUGIN_ID);
         getLogger().info("RexRewards enabled.");
     }
 
