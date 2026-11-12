@@ -1,0 +1,97 @@
+# RexRewards
+# Player-facing text accepts MiniMessage, legacy & codes, &#RRGGBB, and #RRGGBB.
+# {player}, {uuid}, {menu}, {reward}, {period}, {count}, and {label} come from the plugin.
+# PlaceholderAPI placeholders are resolved for online players when that plugin is installed.
+# menus.yml is a separate file. Reload reads it and does not write it.
+
+config-version: 1
+
+settings:
+  # How often open menus look for a new day or week, in ticks. 20 ticks is one second.
+  refresh-ticks: 20
+
+storage:
+  # sqlite writes rewards.db in this plugin folder. mysql shares claims across servers.
+  # Servers that share a database need the same menu ids, timezones, and week-start values.
+  type: sqlite
+  sqlite:
+    file: rewards.db
+  mysql:
+    host: 127.0.0.1
+    port: 3306
+    database: rexrewards
+    username: rexrewards
+    password: ""
+    pool-size: 4
+    use-ssl: false
+
+sounds:
+  claim:
+    enabled: true
+    sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    volume: 0.7
+    pitch: 1.2
+  already-claimed:
+    enabled: true
+    sound: BLOCK_NOTE_BLOCK_BASS
+    volume: 0.6
+    pitch: 0.8
+  inventory-full:
+    enabled: true
+    sound: ENTITY_VILLAGER_NO
+    volume: 0.8
+    pitch: 1.0
+  unavailable:
+    enabled: true
+    sound: BLOCK_NOTE_BLOCK_HAT
+    volume: 0.5
+    pitch: 0.6
+
+title:
+  claim:
+    enabled: true
+    title: "<green>Claimed"
+    subtitle: "<gray>{reward}"
+    fade-in: 5
+    stay: 25
+    fade-out: 8
+
+actionbar:
+  claim: "<green>Claimed <white>{reward}"
+  already-claimed: "<red>Already claimed"
+  inventory-full: "<red>Inventory is full"
+  unavailable: "<gray>Not available this period"
+
+messages:
+  prefix: "<dark_gray>[<gold>RexRewards<dark_gray>] "
+  no-permission: "{prefix}<red>You do not have permission to do that."
+  players-only: "{prefix}<red>Only a player can open a menu."
+  reload: "{prefix}<green>Reloaded. Claims were kept."
+  reload-failed: "{prefix}<red>Reload failed. Check the console."
+  unknown-menu: "{prefix}<red>There is no menu named <white>{menu}<red>."
+  unknown-player: "{prefix}<red><white>{player} <red>has not played on this server."
+  menu-denied: "{prefix}<red>You cannot open <white>{menu}<red>."
+  usage: "{prefix}<gray>Usage: <white>/{label} <open|list|reload|help|admin>"
+  open-usage: "{prefix}<gray>Usage: <white>/{label} open <menu>"
+  reset-usage: "{prefix}<gray>Usage: <white>/{label} admin reset <player> <menu>"
+  reset-done: "{prefix}<green>Removed <white>{count} <green>claim row(s) for <white>{player} <green>in <white>{menu}<green>."
+  list-header: "{prefix}<white>Menus"
+  list-line: "<gray>- <white>{menu} <dark_gray>({type})"
+  list-empty: "{prefix}<gray>No menus are open to you."
+  help-header: "{prefix}<white>RexRewards"
+  help:
+    - "<gray>/{label} help <dark_gray>- <white>Show this help"
+    - "<gray>/{label} list <dark_gray>- <white>List menus you can open"
+    - "<gray>/{label} open <menu> <dark_gray>- <white>Open a menu"
+    - "<gray>/{label} reload <dark_gray>- <white>Reload config.yml and menus.yml"
+    - "<gray>/{label} admin reset <player> <menu> <dark_gray>- <white>Delete one player's claims for a menu"
+  claimed: "{prefix}<green>You claimed <white>{reward}<green>."
+  already-claimed: "{prefix}<red>You already claimed <white>{reward} <red>for this period."
+  inventory-full: "{prefix}<red>Your inventory cannot hold <white>{reward}<red>. The claim was not kept."
+  unavailable: "{prefix}<gray><white>{reward} <gray>is not offered this period."
+  storage-error: "{prefix}<red>The claim could not be saved. Try again."
+  reset-failed: "{prefix}<red>The claims could not be deleted. Check the console."
+  gui:
+    claimed-lore: "<dark_gray>Claimed"
+    unavailable-lore: "<dark_gray>Not this period"
+    click-lore: "<yellow>Click to claim"

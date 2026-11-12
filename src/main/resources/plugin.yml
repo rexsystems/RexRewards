@@ -1,0 +1,35 @@
+name: RexRewards
+version: '${project.version}'
+main: me.rexsystems.rexRewards.RexRewards
+api-version: '1.21'
+folia-supported: true
+authors: [RexSystems]
+description: Daily, weekly, and one-time reward menus
+website: https://rexsystems.me
+softdepend: [PlaceholderAPI]
+
+commands:
+  rexrewards:
+    description: Open reward menus
+    aliases: [rrew, rewards]
+    usage: /rexrewards <open|list|reload|help|admin>
+
+permissions:
+  rexrewards.use:
+    description: Open reward menus and list them
+    default: true
+  rexrewards.reload:
+    description: Reload RexRewards
+    default: op
+  rexrewards.admin:
+    description: Reset a player's claims
+    default: op
+  rexrewards.daily:
+    description: Open the daily menu
+    default: true
+  rexrewards.weekly:
+    description: Open the weekly menu
+    default: true
+  rexrewards.starter:
+    description: Open the starter menu
+    default: true

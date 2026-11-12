@@ -1,0 +1,169 @@
+# Reward menus. Reload reads this file and does not write it.
+# Copy this file in only when it is missing. Add another key under menus for another menu.
+# type: daily, weekly, or once.
+# timezone: a Java ZoneId, such as UTC or Europe/Berlin. Daily and weekly keys use this zone.
+# week-start: MONDAY through SUNDAY. Weekly menus use it. Daily and once menus ignore it.
+# permission: blank means anyone with rexrewards.use.
+# gui.slots are decoration. They are not rewards and clicks on them do nothing.
+# chance is 0 through 100. The same player, reward, and period always get the same roll.
+# one-time: true stores the period key "once" even when the menu is daily or weekly.
+# commands run as console, on the player thread, after the items fit. A full inventory skips them.
+# Placeholders in commands and item text: {player} {uuid} {menu} {reward} {period}
+
+menus:
+  daily:
+    type: daily
+    timezone: UTC
+    week-start: MONDAY
+    permission: rexrewards.daily
+    gui:
+      rows: 3
+      title: "<gold>Daily rewards"
+      filler:
+        material: GRAY_STAINED_GLASS_PANE
+        name: " "
+      slots:
+        "4":
+          material: CLOCK
+          name: "<gold>Daily"
+          lore:
+            - "<gray>Resets at midnight"
+            - "<gray>Zone: UTC"
+    rewards:
+      bread:
+        slot: 11
+        chance: 100
+        one-time: false
+        commands: []
+        items:
+          - material: BREAD
+            amount: 8
+            name: "<gold>Daily bread"
+            lore:
+              - "<gray>Baked this morning"
+      diamond:
+        slot: 13
+        chance: 100
+        one-time: false
+        commands: []
+        items:
+          - material: DIAMOND
+            amount: 1
+            name: "<aqua>Daily diamond"
+            lore:
+              - "<gray>One per day"
+      apple:
+        slot: 15
+        chance: 25
+        one-time: false
+        commands: []
+        items:
+          - material: GOLDEN_APPLE
+            amount: 1
+            name: "<gold>Lucky apple"
+            lore:
+              - "<gray>Offered on a quarter of days"
+
+  weekly:
+    type: weekly
+    timezone: UTC
+    week-start: MONDAY
+    permission: rexrewards.weekly
+    gui:
+      rows: 3
+      title: "<blue>Weekly rewards"
+      filler:
+        material: BLUE_STAINED_GLASS_PANE
+        name: " "
+      slots:
+        "4":
+          material: RECOVERY_COMPASS
+          name: "<blue>Weekly"
+          lore:
+            - "<gray>Week starts Monday"
+            - "<gray>Zone: UTC"
+    rewards:
+      emeralds:
+        slot: 11
+        chance: 100
+        one-time: false
+        commands: []
+        items:
+          - material: EMERALD
+            amount: 8
+            name: "<green>Weekly emeralds"
+            lore:
+              - "<gray>Once each week"
+      pearls:
+        slot: 13
+        chance: 100
+        one-time: false
+        commands: []
+        items:
+          - material: ENDER_PEARL
+            amount: 4
+            name: "<dark_aqua>Weekly pearls"
+            lore:
+              - "<gray>Four, once a week"
+      ingots:
+        slot: 15
+        chance: 50
+        one-time: false
+        commands: []
+        items:
+          - material: GOLD_INGOT
+            amount: 16
+            name: "<gold>Weekly gold"
+            lore:
+              - "<gray>Offered every other week"
+
+  starter:
+    type: once
+    timezone: UTC
+    week-start: MONDAY
+    permission: rexrewards.starter
+    gui:
+      rows: 3
+      title: "<green>Starter rewards"
+      filler:
+        material: GREEN_STAINED_GLASS_PANE
+        name: " "
+      slots:
+        "4":
+          material: CHEST
+          name: "<green>Once"
+          lore:
+            - "<gray>These do not reset"
+    rewards:
+      tools:
+        slot: 11
+        chance: 100
+        one-time: true
+        commands: []
+        items:
+          - material: IRON_PICKAXE
+            amount: 1
+            name: "<white>Starter pickaxe"
+            lore:
+              - "<gray>Claimed once"
+          - material: TORCH
+            amount: 32
+            name: "<gold>Starter torches"
+      food:
+        slot: 13
+        chance: 100
+        one-time: true
+        commands: []
+        items:
+          - material: COOKED_BEEF
+            amount: 16
+            name: "<gold>Starter rations"
+            lore:
+              - "<gray>Claimed once"
+      helmet:
+        slot: 15
+        chance: 100
+        one-time: true
+        commands:
+          - "give {player} leather_helmet 1"
+        items: []
