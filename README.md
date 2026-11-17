@@ -37,3 +37,7 @@ Aliases: `/rrew`, `/rewards`
 The pages in [docs/](docs/index.md) drop into a Starlight site at `src/content/docs/rexrewards/`. Paste `docs/sidebar.mjs` into the site sidebar.
 
 Full docs: [https://rexsystems.me/docs/rexrewards](https://rexsystems.me/docs/rexrewards)
+
+## License
+
+Licensed under the [GNU Affero General Public License v3.0](LICENSE).
