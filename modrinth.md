@@ -1,1 +1,1 @@
-https://rexsystems.me/docs/rexrewards
+https://docs.rexsystems.me/rexrewards/
